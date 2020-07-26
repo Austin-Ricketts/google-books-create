@@ -1,11 +1,9 @@
 const path = require("path");
 const router = require("express").Router();
-const googleRoutes = require("./google");
-const bookRoutes = require("./books");
+const apiRoutes = require("./api");
 
 // API Routes
-router.use("/google", googleRoutes);
-router.use("/books", bookRoutes);
+router.use("/api", apiRoutes);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
