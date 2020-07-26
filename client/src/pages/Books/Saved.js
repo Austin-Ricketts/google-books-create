@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Container } from "../../components/Grid";
-import { FormBtn, Input } from "../../components/Form";
+import { Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import ViewBtn from "../../components/ViewBtn";
+import Card from "../../components/Card";
+import DeleteBtn from "../../components/DeleteBtn";
+import API from "../../utils/API";
 
 function Saved () {
-
     const [books, setBooks] = useState([])
+
+    useEffect(() => {
+        API.getSavedBooks()
+        .then(res => {
+            setBooks()
+        })
+      }, [])
+
+      function deleteBook() {
+        API.deleteBook()
+        .then(setBooks())
+      };
 
 
 
@@ -18,14 +30,16 @@ function Saved () {
                         <List>
                             {books.map(book => {
                             return (
-                                <ListItem key={book._id}>
-                                    <p>{book.volumeInfo.title}</p>
-                                    <p>{book.volumeInfo.author}</p>
-                                    <p>{book.volumeInfo.description}</p>
-                                    <a href={book.volumeInfo.imageLinks.thumbnail}></a>
-                                <ViewBtn onClick={book.link}></ViewBtn>
+                                <Card 
+                                    key={book._id}
+                                    title={book.volumeInfo.title}
+                                    authors={book.volumeInfo.authors.join(", ")}
+                                    description={book.volumeInfo.description}
+                                    infoLink={book.volumeInfo.infoLink}
+                                    imageLinks={book.volumeInfo.imageLinks.thumbnail}
+                                >
                                 <DeleteBtn onClick={() => deleteBook(book._id)} />
-                                </ListItem>
+                                </Card>
                             );
                             })}
                         </List>

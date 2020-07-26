@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Container } from "../../components/Grid";
+import { Row, Container } from "../../components/Grid";
 import { FormBtn, Input } from "../../components/Form";
-import { List, ListItem } from "../../components/List";
+import { List, } from "../../components/List";
+import Card from "../../components/Card";
 import SaveBtn from "../../components/SaveBtn";
 import API from "../../utils/API";
 
@@ -42,6 +43,10 @@ function Search () {
       }
     };
 
+    function saveBook() {
+      API.saveBook()
+    };
+
     return (
         <Container fluid>
             <Row>
@@ -71,14 +76,18 @@ function Search () {
               <List>
                 {books.map(book => {
                   return (
-                    <ListItem key={book.id}>
-                        <p>{book.volumeInfo.title}</p>
-                        <p>{book.volumeInfo.authors.join(", ")}</p>
-                        <p>{book.volumeInfo.description}</p>
-                        <a href={book.volumeInfo.imageLinks.thumbnail}></a>
-                      {/* need to make this a save button */}
-                      {/* <SaveBtn onClick={() => deleteBook(book._id)} /> */}
-                    </ListItem>
+                    <Card 
+                      key={book.id}
+                      title={book.volumeInfo.title}
+                      authors={book.volumeInfo.authors.join(", ")}
+                      description={book.volumeInfo.description}
+                      infoLink={book.volumeInfo.infoLink}
+                      imageLinks={book.volumeInfo.imageLinks.thumbnail}
+                    >
+                      <SaveBtn
+                        onClick={() => saveBook(book.id)}
+                      ></SaveBtn>
+                    </Card>
                   );
                 })}
               </List>
