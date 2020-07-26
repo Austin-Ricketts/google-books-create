@@ -1,0 +1,9 @@
+.navbar__link--active {
+    font-family: "Georgia, 'Times New Roman', Times, serif"
+}
+
+.title {
+    text-align: right;
+    font-family: "Georgia, 'Times New Roman', Times, serif";
+    font-size: 40px;
+}
