@@ -13,11 +13,11 @@ class Search extends Component {
     books: []
   };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
+  
   componentDidMount() {
     API.findBook()
         .then(res => 
-          this.setState({ books: res.data.items })
+          this.setState({ books: res.data[0].volumeInfo })
         )
         .catch(err => console.log(err));
   }
@@ -35,8 +35,8 @@ class Search extends Component {
     if (this.state.title && this.state.authors) {
       API.findBook(this.state.title)
       .then(res => 
-        // this.setState({ books: res.data.items})
-        console.log(res.data)
+        this.setState({ books: res.data[0].volumeInfo})
+        // console.log(res.data[0].volumeInfo)
       )
       .catch(err => console.log(err));
     }
@@ -66,7 +66,7 @@ class Search extends Component {
               </FormBtn>
             </form>
             </Row>
-            {/* <Row>
+            <Row>
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => {
@@ -89,7 +89,7 @@ class Search extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
-            </Row> */}
+            </Row>
         </Container>
     );
   }
