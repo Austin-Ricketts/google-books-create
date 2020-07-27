@@ -20,9 +20,10 @@ function Search () {
     // Loads all books and sets them to books
     function loadBooks() {
       console.log("load books from search.js : ");
-      API.getBooks()
+      API.findBook()
         .then(res => 
-          setBooks(res.data.items)
+          // setBooks(res.data.items)
+          console.log(this)
         )
         .catch(err => console.log(err));
     };
@@ -35,9 +36,10 @@ function Search () {
     function handleFormSubmit(event) {
       event.preventDefault();
       if (inputObject.title && inputObject.author) {
-        API.getBooks(inputObject.title)
+        API.findBook(inputObject.title)
         .then(res => 
-          setBooks(res.data.items)
+          // setBooks(res.data.items)
+          console.log(res.data.items)
         )
         .catch(err => console.log(err));
       }
