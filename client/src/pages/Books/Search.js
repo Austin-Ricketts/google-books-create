@@ -38,8 +38,7 @@ function Search () {
       if (inputObject.title && inputObject.author) {
         API.findBook(inputObject.title)
         .then(res => 
-          // setBooks(res.data.items)
-          console.log(res.data.items)
+          setBooks(res.data.items)
         )
         .catch(err => console.log(err));
       }

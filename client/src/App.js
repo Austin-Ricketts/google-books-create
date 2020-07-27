@@ -14,7 +14,7 @@ function App() {
           <h1>Search Google Books</h1>
           <h3>and save them for later</h3>
         </Jumbotron>
-        <Route exact path="/" component={Search} />
+        <Route exact path={["/", "/google"]} component={Search} />
         <Route exact path="/saved" component={Saved} />
       </div>
     </Router>

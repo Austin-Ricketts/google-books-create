@@ -2,9 +2,9 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  findBook: function(q) {
+  findBook: function(input) {
     console.log("get books api")
-    return axios.get("/api/google", {params: { q: "title:" + q}});
+    return axios.get("/api/google", {params: { q: input}});
   },
   // Gets the book with the given id
   getSavedBooks: function() {
